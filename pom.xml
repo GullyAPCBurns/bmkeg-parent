@@ -1,0 +1,392 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>edu.isi.bmkeg</groupId>
+  <artifactId>bmkeg-parent</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>bmkeg-parent</name>
+  
+  	<properties>
+
+		<spring.version>3.1.2.RELEASE</spring.version>
+		<!--  <spring.version>3.0.3.RELEASE</spring.version> -->
+		<slf4j.version>1.6.1</slf4j.version>
+		<!-- Maven Central version: <slf4j.version>1.5.6</slf4j.version> -->
+		<spring-ws.version>2.0.0.RELEASE</spring-ws.version>
+		<!--  <spring-ws.version>2.0.0-M1</spring-ws.version>  -->
+		<spring-flex.version>1.5.2.RELEASE</spring-flex.version>
+		<blazeds.version>4.0.0.14931</blazeds.version>
+		<!-- 
+		<aetherVersion>1.13.1</aetherVersion>
+        <mavenVersion>3.0.4</mavenVersion>
+        <wagonVersion>2.2</wagonVersion>
+		 -->
+        
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+			        <groupId>org.apache.maven.plugins</groupId>
+			        <artifactId>maven-compiler-plugin</artifactId>
+			        <version>2.3.2</version>
+			        <configuration>
+			          <source>1.6</source>
+			          <target>1.6</target>
+			        </configuration>
+      			</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											exec-maven-plugin
+										</artifactId>
+										<versionRange>[1.2,)</versionRange>
+										<goals>
+											<goal>exec</goal>
+											<goal>java</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-dependency-plugin
+										</artifactId>
+										<versionRange>
+											[2.6,)
+										</versionRange>
+										<goals>
+											<goal>copy</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore/>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											truezip-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.1,)
+										</versionRange>
+										<goals>
+											<goal>copy</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.sonatype.flexmojos
+										</groupId>
+										<artifactId>
+											flexmojos-maven-plugin
+										</artifactId>
+										<versionRange>
+											[4.2-beta,)
+										</versionRange>
+										<goals>
+											<goal>
+												copy-flex-resources
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+
+			<!-- There are two versions of Spring artifacts that are hosted 
+		in two different places: the Enterprise Bundle 
+		Repository (EBR) maintained by SpringSource and Maven Central. The 
+		Spring artifacts in one repository are different from the other, they
+		follow a different naming scheme (group name is appended to artifact name)
+	 	and shouldn't be mixed with the artifacts 
+		from the other repository. The artifacts in EBR are OSGi compatible and undergo
+		extensive QA performed by the Spring team. If using the Spring artifacts from
+		EBR then all dependencies like Hibernate and slf4j should also be obtained from EBR.
+		EBR artifacts can be searched at: http://www.springsource.com/repository.
+		Maven Central Artifacts	can be searched at: http://search.maven.org.
+		 -->
+
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.milestone</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Milestones</name>
+			<url>http://repository.springsource.com/maven/bundles/milestone</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.snapshot</id>
+			<name>SpringSource Enterprise Bundle Repository - Snapshot Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/snapshot</url>
+		</repository>
+
+		<!-- Our local repository -->
+
+		<repository>
+			<id>hugin</id>
+			<name>hugin public repository</name>
+			<url>http://hugin.isi.edu:8180/nexus/content/groups/public/</url>
+		</repository>
+
+		<repository>
+			<id>hugin-snapshots</id>
+			<name>Hugin ISI MRP repository SNAPSHOTS</name>
+			<url>http://hugin.isi.edu:8180/nexus/content/repositories/BMKEG-SNAPSHOT/</url>
+		</repository>
+
+		<repository>
+			<id>hugin-releases</id>
+			<name>Hugin ISI MRP repository RELEASES</name>
+			<url>http://hugin.isi.edu:8180/nexus/content/repositories/releases/</url>
+		</repository>
+
+		<repository>
+			<id>hugin-3rd-party</id>
+			<name>Hugin Third Party Nexus Repository</name>
+			<url>http://hugin.isi.edu:8180/nexus/content/repositories/thirdparty/</url>
+		</repository> 
+
+		<repository>
+			<id>hugin-3rd-party-snapshot</id>
+			<name>Hugin Third Party Nexus Repository</name>
+			<url>http://hugin.isi.edu:8180/nexus/content/repositories/thirdpartysnapshots/</url>
+		</repository> 
+
+ 		<repository>   
+			<id>maven-central</id>   
+			<name>maven</name>
+			<url>http://repo.maven.apache.org/maven2/</url>
+		</repository>
+
+	</repositories>
+  
+  	<distributionManagement>
+		<repository>
+			<id>hugin-releases</id>
+			<name>hugin releases</name>
+			<url>http://hugin.isi.edu:8180/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>hugin-snapshots</id>
+			<name>Hugin ISI MRP repository SNAPSHOTS</name>
+			<url>http://hugin.isi.edu:8180/nexus/content/repositories/BMKEG-SNAPSHOT/</url>
+		</snapshotRepository>
+	</distributionManagement>
+  
+  	<dependencyManagement>
+  	
+		<dependencies>
+		
+			<dependency>
+				<groupId>org.uimafit</groupId>
+				<artifactId>uimafit</artifactId>
+				<version>1.4.0</version>
+			</dependency>
+			
+		  	<!-- 
+		  		Cleartk dependency management.
+		  		
+		  		This are taken from the cleartk-release artifact.
+		  		
+		  		The cleartk documentation asks that cleartk-release 
+		  		dependency management be imported into the project poms by
+		  		adding cleartk-release as a dependency with scope: import and 
+		  		omitting version information for all other cleartk dependencies
+		  		added to the pom. Unfortunately, eclipse doesn't handle the import
+		  		of dependency management so we copied them into our parent pom. 
+		  	 -->
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-type-system</artifactId>
+				<version>1.1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-test-util</artifactId>
+				<version>1.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-util</artifactId>
+				<version>0.9.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-eval</artifactId>
+				<version>0.9.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-ml</artifactId>
+				<version>1.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-ml-opennlp-maxent</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-ml-svmlight</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-ml-tksvmlight</artifactId>
+				<version>0.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-ml-libsvm</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-ml-mallet</artifactId>
+				<version>1.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-ml-crfsuite</artifactId>
+				<version>0.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-ml-weka</artifactId>
+				<version>0.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-token</artifactId>
+				<version>0.8.6</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-named-entity</artifactId>
+				<version>0.6.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-syntax</artifactId>
+				<version>0.6.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-opennlp-tools</artifactId>
+				<version>0.10.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-berkeleyparser</artifactId>
+				<version>0.2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-clearnlp</artifactId>
+				<version>0.5.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-clearparser</artifactId>
+				<version>0.7.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-maltparser</artifactId>
+				<version>0.8.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-stanford-corenlp</artifactId>
+				<version>0.7.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-semantic-roles</artifactId>
+				<version>0.6.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-snowball</artifactId>
+				<version>0.9.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-summarization</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-timeml</artifactId>
+				<version>1.0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.cleartk</groupId>
+				<artifactId>cleartk-examples</artifactId>
+				<version>0.6.3</version>
+			</dependency>
+		</dependencies>
+  	
+  	</dependencyManagement>
+</project>
